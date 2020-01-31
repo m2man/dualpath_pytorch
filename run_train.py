@@ -18,7 +18,7 @@ def main():
   # args = parse_arguments()
   have_cuda = torch.cuda.is_available()
   if have_cuda:
-    cudnn.benchmark = True
+    #cudnn.benchmark = True
     device = torch.device('cuda:0')
   else:
     device = torch.device('cpu')
@@ -101,7 +101,7 @@ def main():
       if have_cuda:
         img_ft = img_ft.to(device)
         txt_ft = txt_ft.to(device)
-        lbl = lbl_ft.to(device)
+        lbl = lbl.to(device)
 
 
       optimizer.zero_grad()

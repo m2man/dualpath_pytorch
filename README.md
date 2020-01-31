@@ -6,8 +6,9 @@ Change parameter in ***config.py*** file, then run ***run_train.py*** file.
 ### Requirements
 - tqdm
 - nltk
-- pytorch
-- PIL
+- pytorch==1.3.0
+- torchvision==0.3.0
+- PIL==6.2.1
 - gensim
 
 ### Download files from Drive with gdown

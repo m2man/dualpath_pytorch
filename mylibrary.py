@@ -148,7 +148,7 @@ def get_feature_from_batch(batch_data, image_folders, dictionary, resize=resize,
     try:
       for image_folder in image_folders:
         try:
-          image_input_x = embedding_image(link_to_image='../'+image_folder+img_x)
+          image_input_x = embedding_image(link_to_image=image_folder+img_x)
           break
         except FileNotFoundError:
           continue
@@ -160,7 +160,7 @@ def get_feature_from_batch(batch_data, image_folders, dictionary, resize=resize,
     try:
       for image_folder in image_folders:
         try:
-          image_input_x = embedding_image(link_to_image='../'+image_folder+img_x)
+          image_input_x = embedding_image(link_to_image=image_folder+img_x)
           break
         except FileNotFoundError:
           continue

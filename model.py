@@ -223,6 +223,8 @@ class DualPath(nn.Module):
 # ===== LOSS =====
 criterion = nn.CrossEntropyLoss()
 cosine_simi = nn.CosineSimilarity()
+zero_tensor = torch.tensor(0., dtype=torch.float64).cuda()
+
 def loss_func(pred_img, pred_txt, lbl, f_img, f_txt, alpha=1, lamb_0=1, lamb_1=1, lamb_2=1):
   batch_size = len(lbl)
   L_img = criterion(pred_img[0:batch_size], lbl)
@@ -231,8 +233,9 @@ def loss_func(pred_img, pred_txt, lbl, f_img, f_txt, alpha=1, lamb_0=1, lamb_1=1
 
   image_cosine = alpha - (cosine_simi(f_img[:batch_size], f_txt[:batch_size]) - cosine_simi(f_img[:batch_size], f_txt[batch_size:]))
   text_cosine = alpha - (cosine_simi(f_txt[:batch_size], f_img[:batch_size]) - cosine_simi(f_txt[:batch_size], f_img[batch_size:]))
-  image_rank_loss = torch.max(torch.tensor(0.), image_cosine)
-  text_rank_loss = torch.max(torch.tensor(0.), text_cosine)
+  
+  image_rank_loss = torch.max(zero_tensor, image_cosine)
+  text_rank_loss = torch.max(zero_tensor, text_cosine)
   ranking_loss = lamb_2*(torch.sum(image_rank_loss + text_rank_loss))/batch_size
 
   # loss = instance_loss + ranking_loss
