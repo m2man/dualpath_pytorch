@@ -29,6 +29,7 @@ def main():
   else:
     log_filename = os.path.join('report/dualpath_pytorch/','dualpath_pytorch_stage_1.log')
   if not os.path.exists('report/dualpath_pytorch/'):
+    os.mkdir('report/')
     os.mkdir('report/dualpath_pytorch/')
 
   images_names = list(dataset_flickr30k.keys())
