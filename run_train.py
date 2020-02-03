@@ -56,7 +56,7 @@ def main():
                    backbone_trainable = False, 
                    initial_word2vec = True)
   if have_cuda:
-    model.to(device)
+    model = model.to(device)
 
   pretrained_path = config.save_path + 'checkpoint_{}.pth'.format(config.last_epoch)
   optimizer = torch.optim.Adam(model.parameters())
